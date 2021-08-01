@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    body {
+        padding: 0%;
+        margin: 0%;
+        margin-top: -1px;
+        background-color: chartreuse;
+ 
+    }
+
+    .top {
+        background-color: rgb(91, 230, 91);
+        height: 50px;
+        box-shadow: 5px 5px #209c01;
+        border-radius: 15px;
+
+
+    }
+
+    #text {
+        text-align: left;
+        font-size: 20px;
+        color: white;
+        text-shadow: 2px 2px #000000;
+        margin-left: 10px;
+        margin-top: 0px;
+
+    }
+
+    #text2 {
+        text-align: right;
+
+        color: white;
+        text-shadow: 2px 2px #000000;
+        float: right;
+        text-align: right;
+        padding-left: 10px;
+        font-size: 20px;
+        margin-right: 10px;
+
+
+    }
+
+    .top>li {
+        display: inline-block;
+
+    }
+
+    .bottom {
+        position: absolute;
+        bottom: 0px;
+        background-color: chartreuse;
+        width: 100%;
+        height: 50px;
+        border-radius: 18px;
+        margin-bottom: 0%;
+    }
+
+    #input {
+        margin-top: 8px;
+        margin-left: 10px;
+        height: 30px;
+        border-radius: 18px;
+        width: 260px;
+    }
+
+    .botton>button {
+        display: inline;
+    }
+
+    .btn {
+        padding: 0px;
+        height: 35px;
+        padding: 0%;
+        width: 50px;
+        position: absolute;
+        margin-top: 8px;
+        margin-right: 1%;
+        border-radius: 18px;
+        background-color: cornflowerblue;
+        border-color: cyan;
+        color: white;
+    }
+
+    .chat5 {
+        margin: 0%;
+        padding: 0%;
+        background-color: thistle;
+        text-align: right;
+        float: right;
+        clear: right;
+        border-radius: 5px;
+        left: 1%;
+        right: 1%;
+        top: 50%;
+        height: auto;
+
+    }
+
+    .chat6 {
+        margin: 0%;
+        padding: 0%;
+        background-color: thistle;
+        text-align: left;
+        float: left;
+        clear: left;
+        border-radius: 5px;
+        left: 1%;
+        right: 1%;
+        top: 50%;
+        height: auto;
+    }
+
+    .content {
+        margin: 0%;
+        padding: 0%;
+        overflow-y: auto;
+        overflow-x: auto;
+        height: 400px;
+        width: 400px;
+    }
+
+    body,
+    html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100vh;
+        font-family: sans-serif;
+        
+    }
+
+    .Section_top {
+        width: 100%;
+        height: 90%;
+        overflow: hidden;
+        position: relative;
+        background-image: url(image.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        text-align: center;
+        justify-content: center;
+        animation: change 10s infinite ease-in-out;
+        overflow: auto;
+
+    }
+
+
+    @keyframes change {
+        0% {
+            background-image: url('/static/images/1.jpg');
+        }
+
+        20% {
+            background-image: url('/static/images/2.jpg');
+        }
+
+        40% {
+            background-image: url('/static/images/3.jpg');
+        }
+
+        60% {
+            background-image: url('/static/images/4.jpg');
+        }
+
+        80% {
+            background-image: url('/static/images/5.jpg');
+        }
+
+        100% {
+            background-image: url('/static/images/6.jpg');
+        }
+    }
+    .reload{
+        margin-left: 30px;
+        height: 30px;
+        border-radius: 18px;
+        background-color: rgb(55, 95, 170);
+        border-color: cyan;
+        color: white;
+
+    }
+</style>
+
+<body>
+    <script>
+        window.onload=function () {
+     var objDiv = document.getElementById("content");
+     objDiv.scrollTop = objDiv.scrollHeight;
+}
+    </script>
+
+    <div class='top'>
+        <li id="text">{{name}}</li>
+        <div id="text2"><form action="/clear" method="POST" >
+            
+            <button style="background-color: crimson; border-color: white; border-radius: 8px; color: white;" value='Send'>Don't Toch Me</button>
+            
+        </form></div>
+    </div>
+    <div class="Section_top">
+        <div class="content" id='content' önload="scrollToBottom()">
+            {% for i in dat %}
+            <p class='chat6' >{{i.svmy}}</p><br>
+            <p class='chat5' >{{i.svsree}}</p><br>
+            {% endfor %}
+            <div id='jt'>
+                <p class='chat5' style="text-align:right;">{{text}}</p>
+            </div>
+        </div>
+    </div>
+    <div class='bottom' id='div'>
+        <form action="/chat/{{name}}" method="POST" autocomplete="off">
+            <input type='text' id='input' placeholder="write a text" name='text' value=''>&nbsp&nbsp
+            <button class='btn' value='Send'>Send</button>&nbsp&nbsp&nbsp&nbsp
+            <button onClick="window.location.reload();" class='reload'>reload</button>
+        </form>
+
+    </div>
+</body>
+
+</html>
